@@ -15,19 +15,19 @@
 
   <body>
 
-  <form class="" action="index.html">
+  <form id="book-form" action="index.html">
     <label for="title">Book Title</label><br>
-    <input type="text" id="title" name="title" placeholder="Book Title">
+    <input type="text" id="title" name="title" placeholder="Book Title" required maxlength="50">
     <br><br>
 
     <label for="author">Book Author:</label><br>
-    <input type="text" id="author" name="author" placeholder="Author"><br><br>
+    <input type="text" id="author" name="author" placeholder="Author" required maxlength="50"><br><br>
 
     <label for="pages">Number of Pages:</label><br>
-    <input type="number" id="pages" name="pages" placeholder="Number of Pages"><br><br>
+    <input type="number" id="pages" name="pages" placeholder="Number of Pages" required max="15000"><br><br>
 
     <label for="read">I have read this book:</label>
-    <input type="checkbox" name="read" value="">
+    <input type="checkbox" id="read" name="read" value="">
     <br><br>
 
     <input type="submit" value="Submit">

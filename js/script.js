@@ -1,14 +1,28 @@
 'use strict';
 
-//stores book objects
+const book_form = document.getElementById('book-form');
 let myBookshelf = [];
+
+book_form.addEventListener('submit', function(e)
+{
+  e.preventDefault();
+  let title  = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let pages  = document.getElementById('pages').value;
+  let read   = document.getElementById('read').checked;
+
+  const new_book = new Book(title, author, pages, read);
+  myBookshelf.push(new_book);
+  book_form.reset();
+});
+
 
 function Book(title, author, pages, read)
 {
-  this.title = title;
+  this.title  = title;
   this.author = author;
-  this.pages = pages;
-  this.read = read;
+  this.pages  = pages;
+  this.read   = read;
 
 }
 
@@ -19,11 +33,11 @@ Book.prototype.read = function()
 }
 
 //take user input and push to the myBookshelf array
-
+//may or may not need this function
 function addBook()
 {
-  const newBook = new Book(userinput, userinput, etc)
-  myBookshelf.push(newBook);
+  // const newBook = new Book(userinput, userinput, etc)
+  // myBookshelf.push(newBook);
 }
 
 //array to HTML
