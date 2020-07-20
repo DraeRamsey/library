@@ -1,10 +1,77 @@
 body, html {
     margin: 0;
     height: 100%;
+    background-color: black;
 }
 
+/*resize solution from css tricks https://css-tricks.com/stop-animations-during-window-resizing/*/
+.resize-animation-stopper * {
+  animation: none !important;
+  transition: none !important;
+}
 
+/* form-window elements */
+#form-container{
+  height: 100%;
+  background-color: white;
+  z-index: 2;
+  position: absolute;
+  top: -93vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.8s;
 
+}
+
+#add-exit {
+  margin:5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: darkgray;
+  position: absolute;
+  bottom: 0;
+  align-self: flex-start;
+  transition: all 1s;
+}
+
+.add-exit-animate{
+  transform:rotate(45deg);
+  -ms-transform:rotate(45deg); /* IE 9 */
+  -webkit-transform:rotate(45deg); /* Safari Chrome */
+}
+
+#add-exit:before, #add-exit:after {
+  content: " ";
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  z-index:10;
+}
+
+#add-exit::after {
+  height: 6px;
+  margin-top: -3px;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+
+}
+#add-exit::before {
+  width: 6px;
+  margin-left: -3px;
+  left: 50%;
+  top: 10px;
+  bottom: 10px;
+
+}
+
+/* /form-window elements */
 
 
 /* *********************** MOBILE ****************************** */

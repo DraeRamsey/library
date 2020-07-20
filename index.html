@@ -14,24 +14,32 @@
   </head>
 
   <body>
+  <section id="form-container">
+    <form id="book-form" action="index.html">
+      <label for="title">Book Title</label><br>
+      <input type="text" id="title" name="title" placeholder="Book Title" required maxlength="50">
+      <br><br>
 
-  <form id="book-form" action="index.html">
-    <label for="title">Book Title</label><br>
-    <input type="text" id="title" name="title" placeholder="Book Title" required maxlength="50">
-    <br><br>
+      <label for="author">Book Author:</label><br>
+      <input type="text" id="author" name="author" placeholder="Author" required maxlength="50"><br><br>
 
-    <label for="author">Book Author:</label><br>
-    <input type="text" id="author" name="author" placeholder="Author" required maxlength="50"><br><br>
+      <label for="pages">Number of Pages:</label><br>
+      <input type="number" id="pages" name="pages" placeholder="Number of Pages" required max="15000"><br><br>
 
-    <label for="pages">Number of Pages:</label><br>
-    <input type="number" id="pages" name="pages" placeholder="Number of Pages" required max="15000"><br><br>
+      <label for="read">I have read this book:</label>
+      <input type="checkbox" id="read" name="read" value="">
+      <br><br>
 
-    <label for="read">I have read this book:</label>
-    <input type="checkbox" id="read" name="read" value="">
-    <br><br>
+      <input type="submit" value="Submit">
+    </form>
 
-    <input type="submit" value="Submit">
-  </form>
+    <div id="add-exit"></div>
+
+
+
+
+  </section>
+
 
   <script src="js/script.js"></script>
   </body>
