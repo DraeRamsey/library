@@ -46,7 +46,7 @@ function formOpenClose()
 {
   if(form_open)
     {
-      form_container.style.top = '-93vh';
+      form_container.style.top = '-100vh';
       add_exit.classList.remove("add-exit-animate");
       form_open = false;
     }

@@ -16,7 +16,7 @@ body, html {
   background-color: white;
   z-index: 2;
   position: absolute;
-  top: -93vh;
+   top: -100vh;
   left: 0;
   right: 0;
   bottom: 0;
@@ -29,15 +29,16 @@ body, html {
 }
 
 #add-exit {
-  margin:5px;
+  margin:10px;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   background-color: darkgray;
   position: absolute;
-  bottom: 0;
   align-self: flex-start;
-  transition: all 1s;
+  transition: all .8s;
+  z-index: 20;
+  
 }
 
 .add-exit-animate{
@@ -51,7 +52,7 @@ body, html {
   position: absolute;
   display: block;
   background-color: #fff;
-  z-index:10;
+
 }
 
 #add-exit::after {
@@ -76,8 +77,6 @@ body, html {
 
 /* *********************** MOBILE ****************************** */
 @media screen and (max-width: 600px) {
-
-
 
 
 }
