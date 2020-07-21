@@ -48,6 +48,7 @@ function formOpenClose()
     {
       form_container.style.top = '-100vh';
       add_exit.classList.remove("add-exit-animate");
+      document.body.style.overflowY = 'scroll';
       form_open = false;
     }
 
@@ -55,6 +56,7 @@ function formOpenClose()
   else {
     form_container.style.top = 0;
     add_exit.classList.add("add-exit-animate");
+    document.body.style.overflowY = 'hidden';
     form_open = true;
   }
 
