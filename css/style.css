@@ -5,7 +5,10 @@ body, html {
     font-family: Lato, roboto, sans-serif;
 }
 
+p{
+  word-break: break-word;
 
+}
 /*resize solution from css tricks https://css-tricks.com/stop-animations-during-window-resizing/*/
 .resize-animation-stopper * {
   animation: none !important;
@@ -120,10 +123,15 @@ h1{
   margin-right: 5px;
   flex: 1 1 250px;
  transition: all .2s ease-in-out;
+ position: relative;
 
 }
+
+
 .book-container > p:first-of-type{
   font-size: 24px;
+  padding: 5px;
+  overflow: auto;
 }
 
 .book-container:hover{
@@ -131,7 +139,35 @@ transform: scale(1.03);
 box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 
 }
+#button-container{
+  display: flex;
+  position: absolute;
 
+  top: 0;
+  left: 0;
+}
+
+
+.circle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px;
+  background-color: black;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+}
+
+i {
+  color: white;
+}
+
+#delete-btn{
+
+}
+
+#read-btn{}
 
 
 @supports (display: grid) {
