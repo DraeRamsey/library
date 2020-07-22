@@ -3,13 +3,18 @@
 // TODO: manually add some book objects into the array so we can see what it looks like
 // associate the DOM books with the actual book objects in some way, maybe add a data-attribute that corresponds to the index of the library array
 
-const book_form = document.getElementById('book-form');
-const form_container = document.getElementById('form-container');
-const add_exit = document.getElementById('add-exit');
+const book_form         = document.getElementById('book-form');
+const form_container    = document.getElementById('form-container');
+const add_exit          = document.getElementById('add-exit');
+const library_container = document.getElementById('library-container');
 
 var form_open = false;
 
 let myBookshelf = [];
+
+window.onload = function(){
+  renderBooks();
+}
 
 add_exit.addEventListener('click', function()
 {
@@ -23,6 +28,7 @@ book_form.addEventListener('submit', function(e)
   let author = document.getElementById('author').value;
   let pages  = document.getElementById('pages').value;
   let read   = document.getElementById('read').checked;
+
 
   const new_book = new Book(title, author, pages, read);
   myBookshelf.push(new_book);
@@ -89,7 +95,70 @@ function addBook()
 
 //array to HTML
 //function that loops through myBookshelf and displays each book on the page
+//set data-attribute using the index
 function renderBooks()
 {
+  var book_container, button_container, delete_btn, read_btn, check_icon, trash_icon, titleP, authorP;
+
+  myBookshelf.forEach(function (bookItem, index) {
+    const bookTitle   = bookItem.title;
+    const bookAuthor  = bookItem.author;
+    const bookPages   = bookItem.pages;
+    const hasReadBook = bookItem.read;
+    console.log(bookTitle, bookAuthor, bookPages, hasReadBook);
+    console.log(index)
+
+    book_container = document.createElement( "div" );
+    book_container.setAttribute( "class", 'book-container');
+
+    button_container = document.createElement( "div" );
+    button_container.setAttribute('id', 'button-container');
+
+    delete_btn = document.createElement( "div" );
+     delete_btn.setAttribute( "class", 'circle');
+    delete_btn.setAttribute( "id", 'delete-btn');
+
+    read_btn = document.createElement( "div" );
+    read_btn.setAttribute( "class", 'circle');
+    read_btn.setAttribute( "id", 'read-btn');
+
+    check_icon = document.createElement( "i" );
+    check_icon.setAttribute( "class", 'fas fa-check');
+
+    trash_icon = document.createElement( "i" );
+    trash_icon.setAttribute( "class", 'far fa-trash-alt');
+
+    titleP = document.createElement( "p" );
+    titleP.textContent = bookTitle;
+
+    authorP = document.createElement( "p" );
+    authorP.textContent = bookAuthor;
+
+    read_btn.appendChild(check_icon);
+    delete_btn.appendChild(trash_icon);
+
+    button_container.appendChild(read_btn);
+    button_container.appendChild(delete_btn);
+
+    book_container.appendChild(button_container);
+    book_container.appendChild(titleP);
+    book_container.appendChild(authorP);
+
+    library_container.appendChild(book_container);
+
+});
+
 
 }
+
+renderNewBook(){
+
+}
+
+
+// testing
+const test_book = new Book("Lord of the Rings", "JRR Tolkien", "355", true);
+const another_test_book = new Book("The Poisonwood Bible", "Barbara Kingsglover", "500", true);
+
+myBookshelf.push(test_book, another_test_book);
+//testing
