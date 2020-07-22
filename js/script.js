@@ -151,7 +151,7 @@ function renderBooks()
 
 }
 
-renderNewBook(){
+function renderNewBook(){
 
 }
 
