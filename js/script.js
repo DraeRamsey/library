@@ -1,6 +1,6 @@
 'use strict';
 
-// TODO: manually add some book objects into the array so we can see what it looks like
+
 // associate the DOM books with the actual book objects in some way, maybe add a data-attribute that corresponds to the index of the library array
 
 const book_form         = document.getElementById('book-form');
@@ -9,8 +9,7 @@ const add_exit          = document.getElementById('add-exit');
 const library_container = document.getElementById('library-container');
 
 var form_open = false;
-
-let myBookshelf = [];
+var myBookshelf = [];
 
 window.onload = function(){
   renderBooks();
@@ -30,8 +29,12 @@ book_form.addEventListener('submit', function(e)
   let read   = document.getElementById('read').checked;
 
 
-  const new_book = new Book(title, author, pages, read);
-  myBookshelf.push(new_book);
+  const book = new Book(title, author, pages, read);
+  myBookshelf.push(book);
+
+  var new_book = myBookshelf[myBookshelf.length - 1];
+  var new_book_index = myBookshelf.length - 1;
+  renderNewBook(new_book, new_book_index);
   book_form.reset();
   formOpenClose();
 });
@@ -82,7 +85,7 @@ window.addEventListener("resize", () => {
 //we need to be able to change the "read" status of the book, to do this we need a function that can toggle the read status on the book prototype instance
 Book.prototype.read = function()
 {
-   //if read make this.read is false if notread then this.read is true
+   //if read make this.read false if notread then this.read is true
 }
 
 //take user input and push to the myBookshelf array
@@ -98,61 +101,61 @@ function addBook()
 //set data-attribute using the index
 function renderBooks()
 {
-  var book_container, button_container, delete_btn, read_btn, check_icon, trash_icon, titleP, authorP;
 
   myBookshelf.forEach(function (bookItem, index) {
-    const bookTitle   = bookItem.title;
-    const bookAuthor  = bookItem.author;
-    const bookPages   = bookItem.pages;
-    const hasReadBook = bookItem.read;
-    console.log(bookTitle, bookAuthor, bookPages, hasReadBook);
-    console.log(index)
-
-    book_container = document.createElement( "div" );
-    book_container.setAttribute( "class", 'book-container');
-
-    button_container = document.createElement( "div" );
-    button_container.setAttribute('id', 'button-container');
-
-    delete_btn = document.createElement( "div" );
-     delete_btn.setAttribute( "class", 'circle');
-    delete_btn.setAttribute( "id", 'delete-btn');
-
-    read_btn = document.createElement( "div" );
-    read_btn.setAttribute( "class", 'circle');
-    read_btn.setAttribute( "id", 'read-btn');
-
-    check_icon = document.createElement( "i" );
-    check_icon.setAttribute( "class", 'fas fa-check');
-
-    trash_icon = document.createElement( "i" );
-    trash_icon.setAttribute( "class", 'far fa-trash-alt');
-
-    titleP = document.createElement( "p" );
-    titleP.textContent = bookTitle;
-
-    authorP = document.createElement( "p" );
-    authorP.textContent = bookAuthor;
-
-    read_btn.appendChild(check_icon);
-    delete_btn.appendChild(trash_icon);
-
-    button_container.appendChild(read_btn);
-    button_container.appendChild(delete_btn);
-
-    book_container.appendChild(button_container);
-    book_container.appendChild(titleP);
-    book_container.appendChild(authorP);
-
-    library_container.appendChild(book_container);
+    renderNewBook(bookItem,index);
 
 });
-
-
 }
 
-function renderNewBook(){
+function renderNewBook(bookItem, index){
 
+    var book_container, button_container, delete_btn, read_btn, check_icon, trash_icon, titleP, authorP;
+
+  const bookTitle   = bookItem.title;
+  const bookAuthor  = bookItem.author;
+  const bookPages   = bookItem.pages;
+  const hasReadBook = bookItem.read;
+  console.log(bookTitle, bookAuthor, bookPages, hasReadBook);
+  console.log(index)
+
+  book_container = document.createElement( "div" );
+  book_container.setAttribute( "class", 'book-container');
+
+  button_container = document.createElement( "div" );
+  button_container.setAttribute('id', 'button-container');
+
+  delete_btn = document.createElement( "div" );
+   delete_btn.setAttribute( "class", 'circle');
+  delete_btn.setAttribute( "id", 'delete-btn');
+
+  read_btn = document.createElement( "div" );
+  read_btn.setAttribute( "class", 'circle');
+  read_btn.setAttribute( "id", 'read-btn');
+
+  check_icon = document.createElement( "i" );
+  check_icon.setAttribute( "class", 'fas fa-check');
+
+  trash_icon = document.createElement( "i" );
+  trash_icon.setAttribute( "class", 'far fa-trash-alt');
+
+  titleP = document.createElement( "p" );
+  titleP.textContent = bookTitle;
+
+  authorP = document.createElement( "p" );
+  authorP.textContent = bookAuthor;
+
+  read_btn.appendChild(check_icon);
+  delete_btn.appendChild(trash_icon);
+
+  button_container.appendChild(read_btn);
+  button_container.appendChild(delete_btn);
+
+  book_container.appendChild(button_container);
+  book_container.appendChild(titleP);
+  book_container.appendChild(authorP);
+
+  library_container.appendChild(book_container);
 }
 
 
