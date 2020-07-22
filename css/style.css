@@ -163,12 +163,6 @@ i {
   color: white;
 }
 
-#delete-btn{
-
-}
-
-#read-btn{}
-
 
 @supports (display: grid) {
   .module {

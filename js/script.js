@@ -1,8 +1,5 @@
 'use strict';
 
-
-// associate the DOM books with the actual book objects in some way, maybe add a data-attribute that corresponds to the index of the library array
-
 const book_form         = document.getElementById('book-form');
 const form_container    = document.getElementById('form-container');
 const add_exit          = document.getElementById('add-exit');
@@ -38,8 +35,6 @@ book_form.addEventListener('submit', function(e)
   book_form.reset();
   formOpenClose();
 });
-
-
 
 
 function Book(title, author, pages, read)
@@ -82,33 +77,25 @@ window.addEventListener("resize", () => {
 });
 
 
-//we need to be able to change the "read" status of the book, to do this we need a function that can toggle the read status on the book prototype instance
-Book.prototype.read = function()
-{
-   //if read make this.read false if notread then this.read is true
-}
+ Book.prototype.toggleRead = function()
+ {
+    this.read ? this.read = false : this.read = true;
+    return this.read;
+ }
 
-//take user input and push to the myBookshelf array
-//may or may not need this function
-function addBook()
-{
-  // const newBook = new Book(userinput, userinput, etc)
-  // myBookshelf.push(newBook);
-}
 
-//array to HTML
-//function that loops through myBookshelf and displays each book on the page
-//set data-attribute using the index
 function renderBooks()
 {
+  library_container.innerHTML = '';
+  myBookshelf.forEach(function (bookItem, index)
+  {
+  renderNewBook(bookItem,index);
+  });
 
-  myBookshelf.forEach(function (bookItem, index) {
-    renderNewBook(bookItem,index);
-
-});
 }
 
-function renderNewBook(bookItem, index){
+function renderNewBook(bookItem, index)
+{
 
     var book_container, button_container, delete_btn, read_btn, check_icon, trash_icon, titleP, authorP;
 
@@ -116,8 +103,6 @@ function renderNewBook(bookItem, index){
   const bookAuthor  = bookItem.author;
   const bookPages   = bookItem.pages;
   const hasReadBook = bookItem.read;
-  console.log(bookTitle, bookAuthor, bookPages, hasReadBook);
-  console.log(index)
 
   book_container = document.createElement( "div" );
   book_container.setAttribute( "class", 'book-container');
@@ -126,12 +111,15 @@ function renderNewBook(bookItem, index){
   button_container.setAttribute('id', 'button-container');
 
   delete_btn = document.createElement( "div" );
-   delete_btn.setAttribute( "class", 'circle');
+  delete_btn.setAttribute( "class", 'circle');
   delete_btn.setAttribute( "id", 'delete-btn');
+
+  delete_btn.setAttribute("data-index-number", index);
 
   read_btn = document.createElement( "div" );
   read_btn.setAttribute( "class", 'circle');
   read_btn.setAttribute( "id", 'read-btn');
+  read_btn.setAttribute("data-index-number", index);
 
   check_icon = document.createElement( "i" );
   check_icon.setAttribute( "class", 'fas fa-check');
@@ -143,10 +131,12 @@ function renderNewBook(bookItem, index){
   titleP.textContent = bookTitle;
 
   authorP = document.createElement( "p" );
-  authorP.textContent = bookAuthor;
+  authorP.textContent = "By: " + bookAuthor;
 
   read_btn.appendChild(check_icon);
   delete_btn.appendChild(trash_icon);
+
+  toggleColour(bookItem,read_btn);
 
   button_container.appendChild(read_btn);
   button_container.appendChild(delete_btn);
@@ -156,12 +146,33 @@ function renderNewBook(bookItem, index){
   book_container.appendChild(authorP);
 
   library_container.appendChild(book_container);
+
+  //dynamically created element fucntions
+  delete_btn.addEventListener("click", function()
+  {
+    let data_index_number = this.dataset.indexNumber;
+    myBookshelf.splice(data_index_number, 1);
+    renderBooks();
+  });
+
+  read_btn.addEventListener("click", function()
+  {
+    let data_index_number = this.dataset.indexNumber;
+    let this_book = myBookshelf[data_index_number];
+    this_book.toggleRead();
+    toggleColour(this_book,this)
+
+  });
+
+}
+function toggleColour(book,element)
+{
+  book.read ? element.style.backgroundColor = "green" :  element.style.backgroundColor = "red";
+
 }
 
 
-// testing
+//hard coded test books
 const test_book = new Book("Lord of the Rings", "JRR Tolkien", "355", true);
 const another_test_book = new Book("The Poisonwood Bible", "Barbara Kingsglover", "500", true);
-
 myBookshelf.push(test_book, another_test_book);
-//testing
