@@ -91,13 +91,12 @@ function renderBooks()
   {
   renderNewBook(bookItem,index);
   });
-
 }
 
 function renderNewBook(bookItem, index)
 {
 
-    var book_container, button_container, delete_btn, read_btn, check_icon, trash_icon, titleP, authorP;
+  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP;
 
   const bookTitle   = bookItem.title;
   const bookAuthor  = bookItem.author;
@@ -113,16 +112,7 @@ function renderNewBook(bookItem, index)
   delete_btn = document.createElement( "div" );
   delete_btn.setAttribute( "class", 'circle');
   delete_btn.setAttribute( "id", 'delete-btn');
-
   delete_btn.setAttribute("data-index-number", index);
-
-  read_btn = document.createElement( "div" );
-  read_btn.setAttribute( "class", 'circle');
-  read_btn.setAttribute( "id", 'read-btn');
-  read_btn.setAttribute("data-index-number", index);
-
-  check_icon = document.createElement( "i" );
-  check_icon.setAttribute( "class", 'fas fa-check');
 
   trash_icon = document.createElement( "i" );
   trash_icon.setAttribute( "class", 'far fa-trash-alt');
@@ -133,21 +123,21 @@ function renderNewBook(bookItem, index)
   authorP = document.createElement( "p" );
   authorP.textContent = "By: " + bookAuthor;
 
-  read_btn.appendChild(check_icon);
+  has_read = document.createElement("p");
+  has_read.setAttribute("data-index-number", index);
+  has_read.setAttribute( "class", 'has-read');
+  toggleText(bookItem, has_read);
   delete_btn.appendChild(trash_icon);
-
-  toggleColour(bookItem,read_btn);
-
   button_container.appendChild(delete_btn);
-  button_container.appendChild(read_btn);
+
 
   book_container.appendChild(button_container);
   book_container.appendChild(titleP);
   book_container.appendChild(authorP);
+  book_container.appendChild(has_read);
 
   library_container.appendChild(book_container);
 
-  //dynamically created element fucntions
   delete_btn.addEventListener("click", function()
   {
     let data_index_number = this.dataset.indexNumber;
@@ -155,26 +145,21 @@ function renderNewBook(bookItem, index)
     renderBooks();
   });
 
-  read_btn.addEventListener("click", function()
+  has_read.addEventListener("click", function()
   {
     let data_index_number = this.dataset.indexNumber;
     let this_book = myBookshelf[data_index_number];
     this_book.toggleRead();
-    toggleColour(this_book,this)
-
+    toggleText(this_book, this);
   });
 
 }
-function toggleColour(book,element)
+
+function toggleText(book, element)
 {
-  //add a read paragraph below author
-  //put the click event on that instead, and give the data_index_number to that
-  // for the checkmark, give it it's own class to toggle with the content being the checkmark instead of adding it dynamically in the funciton above
-  
-
-  book.read ? element.style.backgroundColor = "green" :  element.style.backgroundColor = "red";
-
-}
+  let read_text = book.read? "read" : "not read";
+  element.textContent = read_text;
+};
 
 
 //hard coded test books

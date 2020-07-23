@@ -158,6 +158,23 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   border-radius: 100%;
 }
 
+.has-read{
+
+  cursor: pointer;
+  color: #0496FF;
+  position: absolute;
+    top: 0;
+    right: 10px;
+  font-size: 13px;
+
+}
+
+/* .has-read::before{
+  content: '\2713';
+} */
+
+
+
 i {
   color: white;
 }
@@ -177,4 +194,6 @@ i {
   #library-container{
     margin: 20px;
   }
+
+
 }
