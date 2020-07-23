@@ -86,17 +86,18 @@ window.addEventListener("resize", () => {
 
 function renderBooks()
 {
-  library_container.innerHTML = '';
+   library_container.innerHTML = '';
   myBookshelf.forEach(function (bookItem, index)
   {
   renderNewBook(bookItem,index);
   });
 }
 
+//let's learn React next
 function renderNewBook(bookItem, index)
 {
 
-  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP;
+  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal;
 
   const bookTitle   = bookItem.title;
   const bookAuthor  = bookItem.author;
@@ -107,15 +108,21 @@ function renderNewBook(bookItem, index)
   book_container.setAttribute( "class", 'book-container');
 
   button_container = document.createElement( "div" );
-  button_container.setAttribute('id', 'button-container');
+  button_container.setAttribute('class', 'button-container');
 
   delete_btn = document.createElement( "div" );
   delete_btn.setAttribute( "class", 'circle');
-  delete_btn.setAttribute( "id", 'delete-btn');
   delete_btn.setAttribute("data-index-number", index);
+
+  delete_modal = document.createElement( "div" );
+  delete_modal.setAttribute( "class", 'delete-modal');
+  delete_modal.textContent = "Are you sure you would like to delete " + bookTitle + "?";
+
+
 
   trash_icon = document.createElement( "i" );
   trash_icon.setAttribute( "class", 'far fa-trash-alt');
+
 
   titleP = document.createElement( "p" );
   titleP.textContent = bookTitle;
@@ -135,14 +142,23 @@ function renderNewBook(bookItem, index)
   book_container.appendChild(titleP);
   book_container.appendChild(authorP);
   book_container.appendChild(has_read);
+  book_container.appendChild(delete_modal);
 
   library_container.appendChild(book_container);
 
   delete_btn.addEventListener("click", function()
   {
-    let data_index_number = this.dataset.indexNumber;
-    myBookshelf.splice(data_index_number, 1);
-    renderBooks();
+  let this_icon = this.firstChild;
+  let this_book_container = this.parentElement.parentElement;
+  let this_delete_modal = this_book_container.lastChild;
+  this_delete_modal.classList.toggle('delete-modal-open');
+  //  this_icon.classList.toggle('fas fa-times');
+  this_icon.setAttribute( "class", 'fas fa-times');
+
+
+     // let data_index_number = this.dataset.indexNumber;
+     // myBookshelf.splice(data_index_number, 1);
+     // renderBooks();
   });
 
   has_read.addEventListener("click", function()
@@ -154,6 +170,7 @@ function renderNewBook(bookItem, index)
   });
 
 }
+
 
 function toggleText(book, element)
 {

@@ -19,7 +19,7 @@ p{
 #form-container{
   height: 100%;
   background-color: white;
-  z-index: 2;
+  z-index: 100;
   position: absolute;
   top: -100vh;
   left: 0;
@@ -42,7 +42,7 @@ p{
   position: absolute;
   align-self: flex-start;
   transition: all .8s;
-  z-index: 20;
+  z-index: 101;
 
 }
 
@@ -138,7 +138,7 @@ transform: scale(1.03);
 box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 
 }
-#button-container{
+.button-container{
   display: flex;
   position: absolute;
 
@@ -146,8 +146,43 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   left: 0;
 }
 
+.delete-modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  color: white;
+  background-color: black;
+  position: absolute;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+  /* background: black; */
+  transition: all 0.8s;
+}
+
+.delete-modal-open{
+    opacity: 1;
+    bottom:0;
+    transition: all 0.8s;
+}
+
+.delete-icon{
+
+}
+
+.delete-icon:before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f2ed";
+
+}
+
+
 
 .circle{
+   z-index: 22;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,12 +203,6 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   font-size: 13px;
 
 }
-
-/* .has-read::before{
-  content: '\2713';
-} */
-
-
 
 i {
   color: white;
