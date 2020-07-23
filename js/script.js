@@ -138,8 +138,8 @@ function renderNewBook(bookItem, index)
 
   toggleColour(bookItem,read_btn);
 
-  button_container.appendChild(read_btn);
   button_container.appendChild(delete_btn);
+  button_container.appendChild(read_btn);
 
   book_container.appendChild(button_container);
   book_container.appendChild(titleP);
@@ -167,12 +167,17 @@ function renderNewBook(bookItem, index)
 }
 function toggleColour(book,element)
 {
+  //add a read paragraph below author
+  //put the click event on that instead, and give the data_index_number to that
+  // for the checkmark, give it it's own class to toggle with the content being the checkmark instead of adding it dynamically in the funciton above
+  
+
   book.read ? element.style.backgroundColor = "green" :  element.style.backgroundColor = "red";
 
 }
 
 
 //hard coded test books
-const test_book = new Book("Lord of the Rings", "JRR Tolkien", "355", true);
+const test_book = new Book("Lord of the Rings", "J.R.R Tolkien", "355", true);
 const another_test_book = new Book("The Poisonwood Bible", "Barbara Kingsglover", "500", true);
 myBookshelf.push(test_book, another_test_book);

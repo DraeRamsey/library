@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     height: 100%;
-    background-color: lightgray;
+    background-color: #E1E2E1;
     font-family: Lato, roboto, sans-serif;
 }
 
@@ -38,7 +38,7 @@ p{
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: darkgray;
+  background-color: #0496FF;
   position: absolute;
   align-self: flex-start;
   transition: all .8s;
@@ -83,7 +83,6 @@ p{
 }
 
 #title-container{
-  background-color: black;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -91,7 +90,7 @@ p{
 }
 
 h1{
-  color: white;
+
 }
 
 #library-container {
@@ -111,7 +110,7 @@ h1{
 
 .book-container {
   padding: 20px;
-  background: #eaeaea;
+  background-color: white;
   display: flex;
   flex-direction: column;
   text-align: center;
