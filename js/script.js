@@ -97,7 +97,7 @@ function renderBooks()
 function renderNewBook(bookItem, index)
 {
 
-  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal;
+  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal, delete_paragraph;
 
   const bookTitle   = bookItem.title;
   const bookAuthor  = bookItem.author;
@@ -116,9 +116,11 @@ function renderNewBook(bookItem, index)
 
   delete_modal = document.createElement( "div" );
   delete_modal.setAttribute( "class", 'delete-modal');
-  delete_modal.textContent = "Are you sure you would like to delete " + bookTitle + "?";
 
+  delete_paragraph = document.createElement('p');
+  delete_paragraph.textContent = "Are you sure you would like to delete " + bookTitle + "?";
 
+  delete_modal.appendChild(delete_paragraph);
 
   trash_icon = document.createElement( "i" );
   trash_icon.setAttribute( "class", 'far fa-trash-alt');
@@ -152,6 +154,7 @@ function renderNewBook(bookItem, index)
   let this_book_container = this.parentElement.parentElement;
   let this_delete_modal = this_book_container.lastChild;
   this_delete_modal.classList.toggle('delete-modal-open');
+  delete_paragraph.classList.toggle('p-open');
   //  this_icon.classList.toggle('fas fa-times');
   //this_icon.setAttribute( "class", 'fas fa-times');
 

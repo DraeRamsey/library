@@ -147,40 +147,40 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .delete-modal{
-  font-size: 0px;
   padding:0px 20px 0px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  color: white;
   background-color: black;
   position: absolute;
-    top: 0;
-    bottom: 100%;
-    left: 0;
-    right: 0;
-  /* background: black; */
-  transition: all 0.8s;
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  transition: 0.8s;
 }
 
 .delete-modal-open{
-  font-size: 16px;
-    opacity: 1;
-    bottom:0;
-    transition: all 0.8s;
+  color:white;
+  opacity: 1;
+  bottom:0;
+  transition: all 0.8s;
 }
 
-/* .delete-icon{
-
+.delete-modal p{
+  margin:0;
+  visibility: hidden;
+  opacity: 0;
+  height:0;
+  transition: visibility 0.8s, opacity 0.8s linear;
 }
 
-.delete-icon:before{
-  font-family: "Font Awesome 5 Free";
-  content: "\f2ed";
-
-} */
-
+.p-open{
+  margin: auto;
+  visibility: visible !important;
+   opacity: 1 !important;
+}
 
 
 .circle{
@@ -197,12 +197,11 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .has-read{
-
   cursor: pointer;
   color: #0496FF;
   position: absolute;
-    top: 0;
-    right: 10px;
+  top: 0;
+  right: 10px;
   font-size: 13px;
 
 }
