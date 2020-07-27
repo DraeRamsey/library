@@ -177,20 +177,17 @@ function renderNewBook(bookItem, index)
   let this_book_container = this.parentElement.parentElement;
   let this_delete_modal = this_book_container.lastChild;
 
-  this_delete_modal.classList.toggle('delete-modal-open');
-  delete_paragraph.classList.toggle('p-open');
-  yes_validation_btn.classList.toggle('val-open');
-  no_validation_btn.classList.toggle('val-open');
-  //  this_icon.classList.toggle('fas fa-times');
-  //this_icon.setAttribute( "class", 'fas fa-times');
+  toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
 
-  this_icon.classList.contains("far", "fa-trash-alt") ? this_icon.setAttribute( "class", 'fas fa-times'): this_icon.setAttribute( "class", 'far fa-trash-alt');
+     no_validation_btn.addEventListener('click', function()
+     {
 
-     // let data_index_number = this.dataset.indexNumber;
-     // myBookshelf.splice(data_index_number, 1);
-     // renderBooks();
+        if(this.classList.contains("val-open")){
+          toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
+
+        }
+     });
   });
-
 
 
 
@@ -204,6 +201,14 @@ function renderNewBook(bookItem, index)
 
 }
 
+function toggleModal(delete_modal, delete_paragraph, yes_btn, no_btn, icon){
+  delete_modal.classList.toggle('delete-modal-open');
+  delete_paragraph.classList.toggle('p-open');
+  yes_btn.classList.toggle('val-open');
+  no_btn.classList.toggle('val-open');
+
+  icon.classList.contains("far", "fa-trash-alt") ? icon.setAttribute( "class", 'fas fa-times'): icon.setAttribute( "class", 'far fa-trash-alt');
+}
 
 function toggleText(book, element)
 {
