@@ -77,7 +77,6 @@ p{
 /* library body elements*/
 #content-container{
   min-height: 100%;
-  /* background-color: blue; */
   display:flex;
   flex-direction: column;
 }
@@ -103,8 +102,8 @@ h1{
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: minmax(100px, auto);
 
-  /* align-items: center; */
-  /* justify-content: center; */
+  align-items: center;
+  justify-content: center;
   margin: 50px 150px 50px 150px;
 }
 
@@ -141,14 +140,20 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 .button-container{
   display: flex;
   position: absolute;
-
   top: 0;
   left: 0;
+}
+
+.delete-button-container{
+    display: flex;
+    position: absolute;
+    bottom: 20%;
 }
 
 .delete-modal{
   padding:0px 20px 0px 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   opacity: 0;
@@ -168,6 +173,7 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   transition: all 0.8s;
 }
 
+/* maybe change to everything in the delete modal */
 .delete-modal p{
   margin:0;
   visibility: hidden;
@@ -176,15 +182,35 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   transition: visibility 0.8s, opacity 0.8s linear;
 }
 
-.p-open{
-  margin: auto;
-  visibility: visible !important;
-   opacity: 1 !important;
+
+
+
+
+.validation-btn{
+  visibility: hidden;
+  opacity: 0;
+  height:0;
+  transition: visibility 0.8s, opacity 0.8s linear;
+
+ cursor: pointer;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding:15px;
+ transition: 0.8s;
 }
 
+.p-open, .val-open{
+  margin: auto;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
 
+.validation-btn:hover{
+  transform: scale(1.2);
+}
 .circle{
-   z-index: 22;
+  z-index: 22;
   cursor: pointer;
   display: flex;
   justify-content: center;

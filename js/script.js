@@ -97,7 +97,7 @@ function renderBooks()
 function renderNewBook(bookItem, index)
 {
 
-  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal, delete_paragraph;
+  var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal,modal_content_container, delete_paragraph, delete_button_container, yes_validation_btn, no_validation_btn;
 
   const bookTitle   = bookItem.title;
   const bookAuthor  = bookItem.author;
@@ -114,13 +114,36 @@ function renderNewBook(bookItem, index)
   delete_btn.setAttribute( "class", 'circle');
   delete_btn.setAttribute("data-index-number", index);
 
+// delete modal elements
   delete_modal = document.createElement( "div" );
   delete_modal.setAttribute( "class", 'delete-modal');
+
+  // modal_content_container = document.createElement( "div" );
+  // modal_content_container.setAttribute( "class", 'modal-content-container');
 
   delete_paragraph = document.createElement('p');
   delete_paragraph.textContent = "Are you sure you would like to delete " + bookTitle + "?";
 
+
+  delete_button_container = document.createElement( "div" );
+  delete_button_container.setAttribute( "class", 'delete-button-container');
+
+  yes_validation_btn = document.createElement( "div" );
+  yes_validation_btn.setAttribute( "class", 'validation-btn');
+  yes_validation_btn.textContent = "Yes";
+
+  no_validation_btn = document.createElement( "div" );
+  //might need to toggle class below
+  no_validation_btn.setAttribute( "class", 'validation-btn');
+  no_validation_btn.setAttribute("data-index-number", index);
+  no_validation_btn.textContent = "No";
+
   delete_modal.appendChild(delete_paragraph);
+  delete_modal.appendChild(delete_button_container);
+  delete_button_container.appendChild(yes_validation_btn);
+  delete_button_container.appendChild(no_validation_btn);
+// delete modal elements
+
 
   trash_icon = document.createElement( "i" );
   trash_icon.setAttribute( "class", 'far fa-trash-alt');
@@ -153,8 +176,11 @@ function renderNewBook(bookItem, index)
   let this_icon = this.firstChild;
   let this_book_container = this.parentElement.parentElement;
   let this_delete_modal = this_book_container.lastChild;
+
   this_delete_modal.classList.toggle('delete-modal-open');
   delete_paragraph.classList.toggle('p-open');
+  yes_validation_btn.classList.toggle('val-open');
+  no_validation_btn.classList.toggle('val-open');
   //  this_icon.classList.toggle('fas fa-times');
   //this_icon.setAttribute( "class", 'fas fa-times');
 
@@ -164,6 +190,9 @@ function renderNewBook(bookItem, index)
      // myBookshelf.splice(data_index_number, 1);
      // renderBooks();
   });
+
+
+
 
   has_read.addEventListener("click", function()
   {
