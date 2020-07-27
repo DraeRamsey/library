@@ -153,8 +153,9 @@ function renderNewBook(bookItem, index)
   let this_delete_modal = this_book_container.lastChild;
   this_delete_modal.classList.toggle('delete-modal-open');
   //  this_icon.classList.toggle('fas fa-times');
-  this_icon.setAttribute( "class", 'fas fa-times');
+  //this_icon.setAttribute( "class", 'fas fa-times');
 
+  this_icon.classList.contains("far", "fa-trash-alt") ? this_icon.setAttribute( "class", 'fas fa-times'): this_icon.setAttribute( "class", 'far fa-trash-alt');
 
      // let data_index_number = this.dataset.indexNumber;
      // myBookshelf.splice(data_index_number, 1);

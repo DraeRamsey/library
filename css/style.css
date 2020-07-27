@@ -147,6 +147,8 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .delete-modal{
+  font-size: 0px;
+  padding:0px 20px 0px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,12 +165,13 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
 .delete-modal-open{
+  font-size: 16px;
     opacity: 1;
     bottom:0;
     transition: all 0.8s;
 }
 
-.delete-icon{
+/* .delete-icon{
 
 }
 
@@ -176,7 +179,7 @@ box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   font-family: "Font Awesome 5 Free";
   content: "\f2ed";
 
-}
+} */
 
 
 
