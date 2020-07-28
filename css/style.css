@@ -88,9 +88,45 @@ p{
   align-items: center;
 }
 
-h1{
+h1, h2{
+  font-size: 30px;
+}
+
+ h2{
+color: #0496FF;
+text-align: left;
+}
+
+input[type=submit]{
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border:none;
+	border-radius: 5px;
+  background-color: #0496FF;
+  color: white;
+  transition:  0.3s ;
+}
+
+
+
+input[type=submit]:hover{
+transform: scale(1.04);
+font-size: 17px;
 
 }
+
+input[type=text], input[type=number]{
+border: 3px solid #E1E2E1;
+border-radius: 5px;
+padding: 5px;
+
+}
+
 
 #library-container {
   /* flex */
