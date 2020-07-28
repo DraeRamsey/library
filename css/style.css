@@ -127,8 +127,21 @@ padding: 5px;
 
 }
 
+#msg-container{
+  padding: 30px;
+  font-size: 20px;
+  color: darkgray;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
 
 #library-container {
+  z-index: 2;
   /* flex */
   display: flex;
   flex-wrap: wrap;

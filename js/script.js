@@ -4,6 +4,7 @@ const book_form         = document.getElementById('book-form');
 const form_container    = document.getElementById('form-container');
 const add_exit          = document.getElementById('add-exit');
 const library_container = document.getElementById('library-container');
+const msg_container = document.getElementById('msg-container')
 
 var form_open = false;
 var myBookshelf = [];
@@ -86,16 +87,29 @@ window.addEventListener("resize", () => {
 
 function renderBooks()
 {
+
    library_container.innerHTML = '';
-  myBookshelf.forEach(function (bookItem, index)
-  {
-  renderNewBook(bookItem,index);
-  });
+
+   if(myBookshelf.length === 0)
+   {
+     console.log("there's nothing the heck here!")
+    msg_container.textContent = "Your bookshelf is empty! Click the blue plus sign to add a book.";
+   }
+
+   else
+   {
+     myBookshelf.forEach(function (bookItem, index)
+     {
+     renderNewBook(bookItem,index);
+     });
+   }
+
 }
 
 //let's learn React next
 function renderNewBook(bookItem, index)
 {
+  msg_container.innerHTML = '';
 
   var book_container, button_container, delete_btn, trash_icon, has_read, titleP, authorP, delete_modal,modal_content_container, delete_paragraph, delete_button_container, yes_validation_btn, no_validation_btn;
 
