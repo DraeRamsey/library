@@ -130,12 +130,12 @@ function renderNewBook(bookItem, index)
 
   yes_validation_btn = document.createElement( "div" );
   yes_validation_btn.setAttribute( "class", 'validation-btn');
+  yes_validation_btn.setAttribute("data-index-number", index);
   yes_validation_btn.textContent = "Yes";
 
   no_validation_btn = document.createElement( "div" );
   //might need to toggle class below
   no_validation_btn.setAttribute( "class", 'validation-btn');
-  no_validation_btn.setAttribute("data-index-number", index);
   no_validation_btn.textContent = "No";
 
   delete_modal.appendChild(delete_paragraph);
@@ -173,22 +173,32 @@ function renderNewBook(bookItem, index)
 
   delete_btn.addEventListener("click", function()
   {
-  let this_icon = this.firstChild;
-  let this_book_container = this.parentElement.parentElement;
-  let this_delete_modal = this_book_container.lastChild;
+    let this_icon, this_book_container, this_delete_modal;
+   this_icon = this.firstChild;
+   this_book_container = this.parentElement.parentElement;
+   this_delete_modal = this_book_container.lastChild;
 
   toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
 
-     no_validation_btn.addEventListener('click', function()
-     {
-
-        if(this.classList.contains("val-open")){
-          toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
-
-        }
-     });
+  no_validation_btn.addEventListener('click', function()
+  {
+     if(this.classList.contains("val-open")){
+       toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
+     }
   });
 
+  });
+
+
+  yes_validation_btn.addEventListener('click', function()
+  {
+    /// DELETE
+     if(this.classList.contains("val-open")){
+       let data_index_number = this.dataset.indexNumber;
+       myBookshelf.splice(data_index_number, 1);
+       renderBooks();
+     }
+  });
 
 
   has_read.addEventListener("click", function()
