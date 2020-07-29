@@ -4,7 +4,7 @@ const book_form         = document.getElementById('book-form');
 const form_container    = document.getElementById('form-container');
 const add_exit          = document.getElementById('add-exit');
 const library_container = document.getElementById('library-container');
-const msg_container = document.getElementById('msg-container')
+const msg_container     = document.getElementById('msg-container')
 
 var form_open = false;
 var myBookshelf = [];
@@ -26,7 +26,6 @@ book_form.addEventListener('submit', function(e)
   let pages  = document.getElementById('pages').value;
   let read   = document.getElementById('read').checked;
 
-
   const book = new Book(title, author, pages, read);
   myBookshelf.push(book);
 
@@ -44,7 +43,6 @@ function Book(title, author, pages, read)
   this.author = author;
   this.pages  = pages;
   this.read   = read;
-
 }
 
 function formOpenClose()
@@ -53,7 +51,7 @@ function formOpenClose()
     {
       form_container.style.top = '-100vh';
       add_exit.classList.remove("add-exit-animate");
-      document.body.style.overflowY = 'scroll';
+      document.body.style.overflowY = 'auto';
       form_open = false;
     }
 
@@ -87,12 +85,10 @@ window.addEventListener("resize", () => {
 
 function renderBooks()
 {
-
    library_container.innerHTML = '';
 
-   if(myBookshelf.length === 0)
+  if(myBookshelf.length === 0)
    {
-     console.log("there's nothing the heck here!")
     msg_container.textContent = "Your bookshelf is empty! Click the blue plus sign to add a book.";
    }
 
@@ -106,7 +102,6 @@ function renderBooks()
 
 }
 
-//let's learn React next
 function renderNewBook(bookItem, index)
 {
   msg_container.innerHTML = '';
@@ -128,16 +123,12 @@ function renderNewBook(bookItem, index)
   delete_btn.setAttribute( "class", 'circle');
   delete_btn.setAttribute("data-index-number", index);
 
-// delete modal elements
+
   delete_modal = document.createElement( "div" );
   delete_modal.setAttribute( "class", 'delete-modal');
 
-  // modal_content_container = document.createElement( "div" );
-  // modal_content_container.setAttribute( "class", 'modal-content-container');
-
   delete_paragraph = document.createElement('p');
   delete_paragraph.textContent = "Are you sure you would like to delete " + bookTitle + "?";
-
 
   delete_button_container = document.createElement( "div" );
   delete_button_container.setAttribute( "class", 'delete-button-container');
@@ -148,7 +139,6 @@ function renderNewBook(bookItem, index)
   yes_validation_btn.textContent = "Yes";
 
   no_validation_btn = document.createElement( "div" );
-  //might need to toggle class below
   no_validation_btn.setAttribute( "class", 'validation-btn');
   no_validation_btn.textContent = "No";
 
@@ -156,12 +146,9 @@ function renderNewBook(bookItem, index)
   delete_modal.appendChild(delete_button_container);
   delete_button_container.appendChild(yes_validation_btn);
   delete_button_container.appendChild(no_validation_btn);
-// delete modal elements
-
 
   trash_icon = document.createElement( "i" );
   trash_icon.setAttribute( "class", 'far fa-trash-alt');
-
 
   titleP = document.createElement( "p" );
   titleP.textContent = bookTitle;
@@ -176,7 +163,6 @@ function renderNewBook(bookItem, index)
   delete_btn.appendChild(trash_icon);
   button_container.appendChild(delete_btn);
 
-
   book_container.appendChild(button_container);
   book_container.appendChild(titleP);
   book_container.appendChild(authorP);
@@ -187,33 +173,31 @@ function renderNewBook(bookItem, index)
 
   delete_btn.addEventListener("click", function()
   {
-    let this_icon, this_book_container, this_delete_modal;
-   this_icon = this.firstChild;
-   this_book_container = this.parentElement.parentElement;
-   this_delete_modal = this_book_container.lastChild;
+     let this_icon, this_book_container, this_delete_modal;
+     this_icon = this.firstChild;
+     this_book_container = this.parentElement.parentElement;
+     this_delete_modal = this_book_container.lastChild;
 
-  toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
+     toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
 
-  no_validation_btn.addEventListener('click', function()
-  {
-     if(this.classList.contains("val-open")){
-       toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
-     }
+     no_validation_btn.addEventListener('click', function()
+    {
+       if(this.classList.contains("val-open"))
+       {
+         toggleModal(this_delete_modal, delete_paragraph, yes_validation_btn, no_validation_btn, this_icon);
+       }
+    });
   });
-
-  });
-
 
   yes_validation_btn.addEventListener('click', function()
   {
-    /// DELETE
+    /// DELETE BOOK
      if(this.classList.contains("val-open")){
        let data_index_number = this.dataset.indexNumber;
        myBookshelf.splice(data_index_number, 1);
        renderBooks();
      }
   });
-
 
   has_read.addEventListener("click", function()
   {
@@ -222,15 +206,14 @@ function renderNewBook(bookItem, index)
     this_book.toggleRead();
     toggleText(this_book, this);
   });
-
 }
 
-function toggleModal(delete_modal, delete_paragraph, yes_btn, no_btn, icon){
+function toggleModal(delete_modal, delete_paragraph, yes_btn, no_btn, icon)
+{
   delete_modal.classList.toggle('delete-modal-open');
   delete_paragraph.classList.toggle('p-open');
   yes_btn.classList.toggle('val-open');
   no_btn.classList.toggle('val-open');
-
   icon.classList.contains("far", "fa-trash-alt") ? icon.setAttribute( "class", 'fas fa-times'): icon.setAttribute( "class", 'far fa-trash-alt');
 }
 
@@ -240,8 +223,7 @@ function toggleText(book, element)
   element.textContent = read_text;
 };
 
-
 //hard coded test books
 const test_book = new Book("Lord of the Rings", "J.R.R Tolkien", "355", true);
-const another_test_book = new Book("The Poisonwood Bible", "Barbara Kingsglover", "500", true);
-myBookshelf.push(test_book, another_test_book);
+const test_book2 = new Book("The Poisonwood Bible", "Barbara Kingsglover", "500", true);
+myBookshelf.push(test_book, test_book2);
